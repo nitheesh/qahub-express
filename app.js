@@ -37,9 +37,9 @@ app.get('/bsj/:website/ref', function(req, res) {
       config: bsConfig
     })
     .then(() => {
-      res.send("Reference images created successfully");
-    }).catch(() => {
-      res.send("Test failed.");
+      res.json({status: 200, msg: "Reference images created successfully"});
+    }).catch(err => {
+      res.json({status: 500, msg: "Unable to create reference images."});
     });
 });
 
@@ -50,9 +50,9 @@ app.get('/bsj/:website/test', function(req, res) {
       config: bsConfig
     })
     .then(() => {
-      res.send("Tests completed successfully.");
+      res.json({status: 200, msg: "Tests completed successfully."});
     }).catch(() => {
-      res.send("Some tests failed.");
+      res.json({status: 200, msg: "Some tests failed."});
     });
 });
 
@@ -63,9 +63,9 @@ app.get('/bsj/:website/approve', function(req, res) {
       config: bsConfig
     })
     .then(() => {
-      res.send("Approved successfully.");
+      res.json({status: 200, msg: "Approved successfully."});
     }).catch(() => {
-      res.send("Unable to approve.");
+      res.json({status: 500, msg: "Unable to approve."});
     });
 });
 
