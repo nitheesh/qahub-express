@@ -59,7 +59,6 @@ router.post('/run-test', function(req, res) {
   bsConfig['id'] = id
   bsConfig['paths'] = GetPaths(id)
   bsConfig['scenarios'] = scenarios
-  // remove any previous test folders.
   CleanTestDir(id);
 
   backstop('test', {
