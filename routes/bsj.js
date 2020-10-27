@@ -59,7 +59,7 @@ router.post('/run-test', function(req, res) {
   bsConfig['id'] = id
   bsConfig['paths'] = GetPaths(id)
   bsConfig['scenarios'] = scenarios
-  CleanTestDir(id);
+  // CleanTestDir(id);
 
   backstop('test', {
     config: bsConfig
