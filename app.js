@@ -10,6 +10,9 @@ var bsConfigDir = './bs-configs/';
 const backstop = require("backstopjs");
 
 var indexRouter = require("./routes/index");
+var backstopRouter = require("./routes/bsj");
+
+var processStateRoute = require('./routes/process-state');
 
 var app = express();
 
@@ -29,45 +32,8 @@ app.use('/bitmaps_test', express.static(path.join(__dirname, 'backstop_data/bitm
 app.use('/bitmaps_reference', express.static(path.join(__dirname, 'backstop_data/bitmaps_reference')))
 
 app.use("/", indexRouter);
-
-app.get('/bsj/:website/ref', function(req, res) {
-    var website = req.params.website;
-    var bsConfig = require(bsConfigDir + website +".live.json");
-    backstop('reference', {
-      config: bsConfig
-    })
-    .then(() => {
-      res.json({status: 200, msg: "Reference images created successfully"});
-    }).catch(err => {
-      res.json({status: 500, msg: "Unable to create reference images."});
-    });
-});
-
-app.get('/bsj/:website/test', function(req, res) {
-    var website = req.params.website;
-    var bsConfig = require(bsConfigDir + website +".live.json");
-    backstop('test', {
-      config: bsConfig
-    })
-    .then(() => {
-      res.json({status: 200, msg: "Tests completed successfully."});
-    }).catch(() => {
-      res.json({status: 200, msg: "Some tests failed."});
-    });
-});
-
-app.get('/bsj/:website/approve', function(req, res) {
-    var website = req.params.website;
-    var bsConfig = require(bsConfigDir + website +".live.json");
-    backstop('approve', {
-      config: bsConfig
-    })
-    .then(() => {
-      res.json({status: 200, msg: "Approved successfully."});
-    }).catch(() => {
-      res.json({status: 500, msg: "Unable to approve."});
-    });
-});
+app.use("/bsj", backstopRouter);
+app.use('/handle-state', processStateRoute);
 
 app.get('/reports/:website', function(req, res) {
     res.sendFile(path.join(__dirname + '/reports/' + req.params.website +'/index.html'));

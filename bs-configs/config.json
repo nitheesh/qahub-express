@@ -1,0 +1,40 @@
+{
+  "viewports": [
+    {
+      "label": "phone",
+      "width": 320,
+      "height": 480
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "desktop",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "label": "wide-desktop",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "onBeforeScript": "../bs-configs/engine_scripts/puppet/onBefore.js",
+  "onReadyScript": "../bs-configs/engine_scripts/puppet/onReady.js",
+  "scenarios": [],
+  "paths": {},
+  "report": [],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": [
+      "--no-sandbox",
+      "--proxy-server="
+    ]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}
