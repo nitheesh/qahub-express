@@ -59,7 +59,7 @@ router.post('/run-test', function(req, res) {
   bsConfig['id'] = id
   bsConfig['paths'] = GetPaths(id)
   bsConfig['scenarios'] = scenarios
-  // CleanTestDir(id);
+  CleanTestDir(id);
 
   backstop('test', {
     config: bsConfig
@@ -69,7 +69,7 @@ router.post('/run-test', function(req, res) {
     res.json({status: 200, msg: "Tests completed successfully."});
   }).catch(err => {
     processState.setState(false)
-    res.json({status: 500, msg: "Some tests failed."});
+    res.json({status: 500, msg: "Tests completed with some errors. Please review the report"});
   });
 });
 

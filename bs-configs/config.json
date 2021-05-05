@@ -36,5 +36,7 @@
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,
   "debug": false,
-  "debugWindow": false
+  "debugWindow": false,
+  "requireSameDimensions": true,
+  "misMatchThreshold": 0.0
 }

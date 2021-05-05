@@ -36,7 +36,7 @@ app.use("/bsj", backstopRouter);
 app.use('/handle-state', processStateRoute);
 
 app.get('/reports/:website', function(req, res) {
-    res.sendFile(path.join(__dirname + '/reports/' + req.params.website +'/index.html'));
+  res.sendFile(path.join(__dirname + '/reports/' + req.params.website +'/index.html'));
 });
 
 // catch 404 and forward to error handler
